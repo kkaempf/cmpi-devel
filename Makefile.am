@@ -1,5 +1,7 @@
 # $Id$
 
+docdir=$(datadir)/doc/$(PACKAGE)-$(VERSION)
+
 lib_LTLIBRARIES=libcmpiCppImpl.la
 
 nobase_include_HEADERS=cmpi/CmpiArgs.h cmpi/CmpiBroker.h cmpi/cmpidt.h \
@@ -15,3 +17,13 @@ nobase_include_HEADERS=cmpi/CmpiArgs.h cmpi/CmpiBroker.h cmpi/cmpidt.h \
 
 libcmpiCppImpl_la_SOURCES=CmpiImpl.cpp
 libcmpiCppImpl_la_CPPFLAGS=-Wall -I$(srcdir)/cmpi
+
+EXTRA_DIST=$(PACKAGE).spec
+
+install-data-local: 
+	test -d $(DESTDIR)$(docdir) || $(mkdir_p) $(DESTDIR)$(docdir)
+	$(INSTALL_DATA) $(srcdir)/README $(srcdir)/AUTHORS $(srcdir)/COPYING $(DESTDIR)$(docdir)
+
+
+uninstall-local:
+	rm -rf $(DESTDIR)$(docdir)

@@ -1,0 +1,61 @@
+#
+# sblim-cmpi-devel.spec
+#
+# Package spec for cmpi-devel
+#
+
+BuildRoot: /var/tmp/buildroot
+
+Summary: SBLIM CMPI Provider Development Support
+Name: @PACKAGE_TARNAME@
+Version: @PACKAGE_VERSION@
+Release: 0
+Group: Systems Management/Base
+License: Common Public License 1.0
+
+Provides: cmpi-devel
+
+Source0: http://dl.sourceforge.net/sourceforge/sblim/%{name}-%{version}.tar.bz2
+
+%Description
+This packages provides the CMPI header files needed by provider developers
+and can be used standalone.
+
+%prep
+
+%setup -T -b 0 -n %{name}-%{version}
+
+export PATCH_GET=0
+#%patch0 -p1
+
+%build
+
+%configure --disable-debug
+make
+
+%install
+
+if [ `id -ur` != 0 ]
+then
+# paranoia check 
+	rm -rf $RPM_BUILD_ROOT 
+fi
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+# remove unused libtool files
+rm -f $RPM_BUILD_ROOT/%{_libdir}/*a
+
+%clean
+if [ `id -ur` != 0 ]
+then
+# paranoia check 
+	rm -rf $RPM_BUILD_ROOT 
+fi
+
+
+%files
+%defattr(-,root,root)
+%doc %{_datadir}/doc
+%{_includedir}
+%{_libdir}/*.so*
