@@ -1,0 +1,7 @@
+CMPI was devised and originally written by Adrian Schuur <schuur@de.ibm.com>
+
+The CMPI C++ Wrapper was originally written by Adrian Schuur and
+reworked by Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+Heidi Neumann and Angel Nunez Menciaz have contributed bug-fixes and
+enhancements.

@@ -1,0 +1,19 @@
+SBLIM CMPI Development Package
+==============================
+
+The purpose of this package is to provide a standalone development kit
+for CMPI providers. It contains the CMPI header files needed for compilation
+of CMPI providers written in the C programming language.
+
+It also contains the so-called CMPI C++ Wrapper, consisting of C++ header
+files and a shared library implementing the C++ support.
+
+You can find the CMPI documentation on the following website
+http://www.opengroup.org/bookstore/catalog/c051.htm
+
+Depending on the way you configure the package, the header files go to
+/usr/include/cmpi or /usr/local/include/cmpi
+while the C++ shared library goes to 
+/usr/lib or /usr/local/lib 
+
+We recommend the /usr/local prefix for testing purposes only
