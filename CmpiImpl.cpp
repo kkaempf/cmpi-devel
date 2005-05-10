@@ -21,6 +21,7 @@
  */
 
 #define CMPI_WRAPPER_IMPL
+#define CMPI_VERSION 100
 
 #include "CmpiInstance.h"
 #include "CmpiObjectPath.h"
@@ -1177,8 +1178,7 @@ static const char * _nullkeys[] = {0};
 
 void CmpiInstance::setPropertyFilter(const char** properties, const char** keys) {
   if (keys==0) keys = _nullkeys;
-  CMPIStatus rc=getEnc()->ft->setPropertyFilter(getEnc(),(char**)properties,
-						 (char**)keys);
+  CMPIStatus rc=getEnc()->ft->setPropertyFilter(getEnc(),properties,keys);
   if (rc.rc!=CMPI_RC_OK) throw CmpiStatus(rc);
 }
 
@@ -1201,7 +1201,7 @@ CMPIStatus CmpiStatus::status() const {
 }
 CmpiStatus::CmpiStatus(const CMPIrc rcp, const char *msg) {
    st.rc=rcp;
-   st.msg=CMNewString(CmpiProviderBase::getBroker(),(char*)msg,NULL);
+   st.msg=CMNewString(CmpiProviderBase::getBroker(),msg,NULL);
 }
 
 CMPIrc CmpiStatus::rc() const {
@@ -1454,7 +1454,7 @@ CmpiInstance CmpiBroker::getInstance(const CmpiContext& ctx,
 {
    CMPIStatus rc={CMPI_RC_OK,NULL};
    CMPIInstance* ci=getEnc()->bft->getInstance
-     (getEnc(),ctx.getEnc(),cop.getEnc(),(char **)properties,&rc);
+     (getEnc(),ctx.getEnc(),cop.getEnc(),properties,&rc);
    if (rc.rc!=CMPI_RC_OK) throw CmpiStatus(rc);
    return CmpiInstance(ci);
 }
@@ -1475,8 +1475,8 @@ CmpiObjectPath CmpiBroker::createInstance(const CmpiContext& ctx,
 void CmpiBroker::setInstance(const CmpiContext& ctx, const CmpiObjectPath& cop,
                              const CmpiInstance& inst, const char** properties)
 {
-   CMPIStatus rc=getEnc()->bft->setInstance
-     (getEnc(),ctx.getEnc(),cop.getEnc(),inst.getEnc(), (char**)properties);
+   CMPIStatus rc=getEnc()->bft->modifyInstance
+     (getEnc(),ctx.getEnc(),cop.getEnc(),inst.getEnc(), properties);
    if (rc.rc!=CMPI_RC_OK) throw CmpiStatus(rc);
 }
 
@@ -1502,7 +1502,7 @@ CmpiEnumeration CmpiBroker::enumInstances(const CmpiContext& ctx,
 {
    CMPIStatus rc={CMPI_RC_OK,NULL};
    CMPIEnumeration* en=getEnc()->bft->enumInstances
-      (getEnc(),ctx.getEnc(),cop.getEnc(),(char**)properties,&rc);
+      (getEnc(),ctx.getEnc(),cop.getEnc(),properties,&rc);
    if (rc.rc!=CMPI_RC_OK) throw CmpiStatus(rc);
    return CmpiEnumeration(en);
 }
@@ -1576,7 +1576,7 @@ CmpiData CmpiBroker::getProperty(const CmpiContext& ctx, const CmpiObjectPath& c
 
 
 CmpiString::CmpiString(const CmpiString& s) {
-  enc=CMNewString(CmpiProviderBase::getBroker(),(char*)s.charPtr(),NULL);
+  enc=CMNewString(CmpiProviderBase::getBroker(),s.charPtr(),NULL);
 }
 
 CmpiString::CmpiString(CMPIString* c) {
@@ -1859,7 +1859,7 @@ void *CmpiDateTime::makeDateTime(CMPIBroker *mb) {
 
 void *CmpiDateTime::makeDateTime(CMPIBroker *mb, const char* utcTime) {
    CMPIStatus rc={CMPI_RC_OK,NULL};
-   void *dt=mb->eft->newDateTimeFromChars(mb,(char*)utcTime,&rc);
+   void *dt=mb->eft->newDateTimeFromChars(mb,utcTime,&rc);
    if (rc.rc!=CMPI_RC_OK) throw CmpiStatus(rc);
    return dt;
 }

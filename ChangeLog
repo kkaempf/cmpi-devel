@@ -1,0 +1,15 @@
+2005-05-10    <mihajlov@dyn-9-152-141-53.boeblingen.de.ibm.com>
+
+	* CmpiImpl.cpp: Bug 1199111 Changed from setInstance to modifyInstance.
+	Removed some type now superfluous type cast.
+
+	* configure.ac: New version number.
+
+	* cmpi/cmpimacs.h: Bug 1199111 Changed function signatures to comply
+	with spec.
+
+	* cmpi/cmpift.h: Bug 1199111 Changed function signatures to comply
+	with spec.
+
+	* cmpi/cmpidt.h: Bug 1199111 Changed function signatures to comply
+	with spec.
