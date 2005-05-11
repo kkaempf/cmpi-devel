@@ -1,0 +1,7 @@
+Changes in 1.0.0
+================
+
+Release 1.0.0 is now implementing the function signatures as required
+by the Open Group spec. CMPI providers written before 1.0.0 will require
+that the macro CMPI_VERSION is set to 90 (or some other valid release id) in
+order to build.

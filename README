@@ -17,3 +17,10 @@ while the C++ shared library goes to
 /usr/lib or /usr/local/lib 
 
 We recommend the /usr/local prefix for testing purposes only
+
+CMPI 1.0 and existing providers
+===============================
+
+If you plan to build CMPI providers written before release 1.0.0 availability
+add "#define CMPI_VERSION 90" to the provider source or compile with 
+-DCMPI_VERSION=90 option.
