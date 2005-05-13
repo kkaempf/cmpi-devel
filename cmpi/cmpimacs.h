@@ -2102,7 +2102,7 @@ IBMKR
     CMPICurrentVersion, \
     CMPICurrentVersion, \
     "instance" #pn, \
-    (CMPIStatus(*)(CMPIInstanceMI*,CMPIContext*))CmpiBaseMI::driveBaseCleanup, \
+    (CMPIStatus(*)(CMPIInstanceMI*,const CMPIContext*,CMPIBoolean*))CmpiBaseMI::driveBaseCleanup, \
     CmpiInstanceMI::driveEnumInstanceNames, \
     CmpiInstanceMI::driveEnumInstances, \
     CmpiInstanceMI::driveGetInstance, \
@@ -2113,11 +2113,11 @@ IBMKR
    }; \
    static CMPIInstanceMI mi; \
    fprintf(stderr,"--- _Create_InstanceMI() broker: %p\n",broker); \
-   CmpiContext ctx(ctxp); \
+   CmpiContext ctx((CMPIContext*)ctxp); \
    mi.ft=&instMIFT; \
    CmpiBaseMI *provider=base##pn.getBaseMI(); \
    if (provider == 0) {\
-     provider = new cn(CmpiBroker(broker),ctx); \
+     provider = new cn(CmpiBroker((CMPIBroker*)broker),ctx); \
      provider->setProviderBase(&base##pn); \
        provider->initialize(ctx); \
      base##pn.setBaseMI(provider); \
@@ -2150,7 +2150,7 @@ IBMKR
     CMPICurrentVersion, \
     CMPICurrentVersion, \
     "association" #pn, \
-    (CMPIStatus(*)(CMPIAssociationMI*,CMPIContext*))CmpiBaseMI::driveBaseCleanup, \
+    (CMPIStatus(*)(CMPIAssociationMI*,const CMPIContext*,CMPIBoolean*))CmpiBaseMI::driveBaseCleanup, \
     CmpiAssociationMI::driveAssociators, \
     CmpiAssociationMI::driveAssociatorNames, \
     CmpiAssociationMI::driveReferences, \
@@ -2158,11 +2158,11 @@ IBMKR
   }; \
    static CMPIAssociationMI mi; \
    fprintf(stderr,"--- _Create_AssociationMI() broker: %p\n",broker); \
-   CmpiContext ctx(ctxp); \
+   CmpiContext ctx((CMPIContext*)ctxp); \
    mi.ft=&assocMIFT; \
    CmpiBaseMI *provider=base##pn.getBaseMI(); \
    if (provider == 0) {\
-     provider = new cn(CmpiBroker(broker),ctx); \
+     provider = new cn(CmpiBroker((CMPIBroker*)broker),ctx); \
      provider->setProviderBase(&base##pn); \
        provider->initialize(ctx); \
      base##pn.setBaseMI(provider); \
@@ -2195,16 +2195,16 @@ IBMKR
     CMPICurrentVersion, \
     CMPICurrentVersion, \
     "method" #pn, \
-    (CMPIStatus(*)(CMPIMethodMI*,CMPIContext*))CmpiBaseMI::driveBaseCleanup, \
+    (CMPIStatus(*)(CMPIMethodMI*,const CMPIContext*, CMPIBoolean*))CmpiBaseMI::driveBaseCleanup, \
     CmpiMethodMI::driveInvokeMethod, \
    }; \
    static CMPIMethodMI mi; \
    fprintf(stderr,"--- _Create_MethodMI() broker: %p\n",broker); \
-   CmpiContext ctx(ctxp); \
+   CmpiContext ctx((CMPIContext*)ctxp); \
    mi.ft=&methMIFT; \
    CmpiBaseMI *provider=base##pn.getBaseMI(); \
    if (provider == 0) {\
-     provider = new cn(CmpiBroker(broker),ctx); \
+     provider = new cn(CmpiBroker((CMPIBroker*)broker),ctx); \
      provider->setProviderBase(&base##pn); \
        provider->initialize(ctx); \
      base##pn.setBaseMI(provider); \
@@ -2236,17 +2236,17 @@ IBMKR
     CMPICurrentVersion, \
     CMPICurrentVersion, \
     "property" #pn, \
-    (CMPIStatus(*)(CMPIPropertyMI*,CMPIContext*))CmpiBaseMI::driveBaseCleanup, \
+    (CMPIStatus(*)(CMPIPropertyMI*,const CMPIContext*,CMPIBoolean*))CmpiBaseMI::driveBaseCleanup, \
     CmpiPropertyMI::driveSetProperty, \
     CmpiPropertyMI::driveGetProperty, \
    }; \
    static CMPIPropertyMI mi; \
    fprintf(stderr,"--- _Create_MethodMI() broker: %p\n",broker); \
-   CmpiContext ctx(ctxp); \
+   CmpiContext ctx((CMPIContext*)ctxp); \
    mi.ft=&propMIFT; \
    CmpiBaseMI *provider=base##pn.getBaseMI(); \
    if (provider == 0) {\
-     provider = new cn(CmpiBroker(broker),ctx); \
+     provider = new cn(CmpiBroker((CMPIBroker*)broker),ctx); \
      provider->setProviderBase(&base##pn); \
        provider->initialize(ctx); \
      base##pn.setBaseMI(provider); \
@@ -2287,7 +2287,7 @@ IBMKR
     CMPICurrentVersion, \
     CMPICurrentVersion, \
     "indication" #pn, \
-    (CMPIStatus(*)(CMPIIndicationMI*,CMPIContext*))CmpiBaseMI::driveBaseCleanup, \
+    (CMPIStatus(*)(CMPIIndicationMI*,const CMPIContext*,CMPIBoolean*))CmpiBaseMI::driveBaseCleanup, \
     CmpiIndicationMI::driveAuthorizeFilter, \
     CmpiIndicationMI::driveMustPoll, \
     CmpiIndicationMI::driveActivateFilter, \
@@ -2296,11 +2296,11 @@ IBMKR
    }; \
    static CMPIIndicationMI mi; \
    fprintf(stderr,"--- _Create_IndicationMI() broker: %p\n",broker); \
-   CmpiContext ctx(ctxp); \
+   CmpiContext ctx((CMPIContext*)ctxp); \
    mi.ft=&indMIFT; \
    CmpiBaseMI *provider=base##pn.getBaseMI(); \
    if (provider == 0) {\
-     provider = new cn(CmpiBroker(broker),ctx); \
+     provider = new cn(CmpiBroker((CMPIBroker*)broker),ctx); \
      provider->setProviderBase(&base##pn); \
        provider->initialize(ctx); \
      base##pn.setBaseMI(provider); \

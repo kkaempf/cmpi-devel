@@ -1,3 +1,38 @@
+2005-05-13    <mihajlov@dyn-9-152-141-53.boeblingen.de.ibm.com>
+
+	* CmpiImpl.cpp: 
+	Bug 1201389: Fixed the implementation of the MI driver functions,
+	mainly function signatures and type casts.
+
+	* CmpiAssociationMI.h: 
+	Bug 1201389: Adapted driveXyz.. function signatures to fit new cmpift.h
+	declarations.
+
+	* CmpiBaseMI.h: 
+	Bug 1201389: Adapted driveXyz.. function signatures to fit new cmpift.h
+	declarations.
+
+	* CmpiIndicationMI.h: 
+	Bug 1201389: Adapted driveXyz.. function signatures to fit new cmpift.h
+	declarations.
+
+	* CmpiInstanceMI.h: 
+	Bug 1201389: Adapted driveXyz.. function signatures to fit new cmpift.h
+	declarations.
+
+	* CmpiMethodMI.h: 
+	Bug 1201389: Adapted driveXyz.. function signatures to fit new cmpift.h
+	declarations.
+
+	* CmpiPropertyMI.h: 
+	Bug 1201389: Adapted driveXyz.. function signatures to fit new cmpift.h
+	declarations.
+
+	* cmpimacs.h: 
+	Bug 1201389: Added typecasts in the MI factory macros to allow
+	clean compilation.
+
+
 2005-05-10    <mihajlov@dyn-9-152-141-53.boeblingen.de.ibm.com>
 
 	* CmpiImpl.cpp: Bug 1199111 Changed from setInstance to modifyInstance.

@@ -58,10 +58,10 @@ CmpiBaseMI::~CmpiBaseMI()
 }
 
 CMPIStatus CmpiBaseMI::driveBaseCleanup
-      (void* vi, CMPIContext* eCtx) {
+      (void* vi, const CMPIContext* eCtx, CMPIBoolean *b) {
   try {
    CMPIInstanceMI *mi=( CMPIInstanceMI*)vi;
-   CmpiContext ctx(eCtx);
+   CmpiContext ctx((CMPIContext*)eCtx);
    CmpiStatus rc(CMPI_RC_OK);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*>(mi->hdl);
    if (cmi->isUnloadable()) {
@@ -113,13 +113,13 @@ int CmpiBaseMI::isUnloadable() const {
 //---------------------------------------------------
 
 CMPIStatus CmpiInstanceMI::driveEnumInstanceNames
-   (CMPIInstanceMI* mi,CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
    return imi->enumInstanceNames(ctx,rslt,cop).status();
@@ -130,17 +130,17 @@ CMPIStatus CmpiInstanceMI::driveEnumInstanceNames
 }
 
 CMPIStatus CmpiInstanceMI::driveEnumInstances
-   (CMPIInstanceMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop, char* *properties)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop, const char* *properties)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
    return imi->enumInstances
-      (ctx,rslt,cop,(const char**)properties).status();
+      (ctx,rslt,cop,properties).status();
   } catch (CmpiStatus& stat) {
     cerr << "caught status :" << stat.rc() << " "  << stat.msg() << endl;
     return stat.status();
@@ -148,17 +148,17 @@ CMPIStatus CmpiInstanceMI::driveEnumInstances
 }
 
 CMPIStatus CmpiInstanceMI::driveGetInstance
-   (CMPIInstanceMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop, char* *properties)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop, const char* *properties)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
    return imi->getInstance
-      (ctx,rslt,cop,(const char**)properties).status();
+      (ctx,rslt,cop,properties).status();
   } catch (CmpiStatus& stat) {
     cerr << "caught status :" << stat.rc() << " "  << stat.msg() << endl;
     return stat.status();
@@ -166,13 +166,13 @@ CMPIStatus CmpiInstanceMI::driveGetInstance
 }
 
 CMPIStatus CmpiInstanceMI::driveCreateInstance
-   (CMPIInstanceMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop, CMPIInstance* eInst)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop, const CMPIInstance* eInst)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiInstance inst(eInst);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
@@ -185,13 +185,14 @@ CMPIStatus CmpiInstanceMI::driveCreateInstance
 }
 
 CMPIStatus CmpiInstanceMI::driveSetInstance
-   (CMPIInstanceMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop, CMPIInstance* eInst, char* *properties)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop, const CMPIInstance* eInst, 
+    const char* *properties)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiInstance inst(eInst);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
@@ -204,13 +205,13 @@ CMPIStatus CmpiInstanceMI::driveSetInstance
 }
 
 CMPIStatus CmpiInstanceMI::driveDeleteInstance
-   (CMPIInstanceMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
    return imi->deleteInstance
@@ -222,13 +223,13 @@ CMPIStatus CmpiInstanceMI::driveDeleteInstance
 }
 
 CMPIStatus CmpiInstanceMI::driveExecQuery
-   (CMPIInstanceMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop, char* language ,char* query)
+   (CMPIInstanceMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop, const char* language ,const char* query)
 {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eCop);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiInstanceMI* imi = dynamic_cast<CmpiInstanceMI*>(cmi);
    return imi->execQuery
@@ -298,13 +299,13 @@ CmpiStatus CmpiInstanceMI::execQuery
 //---------------------------------------------------
 
 CMPIStatus CmpiAssociationMI::driveAssociators
-      (CMPIAssociationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPIObjectPath* eOp, const char* assocClass, const char* resultClass,
-       const char* role, const char* resultRole, char** properties) {
+      (CMPIAssociationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPIObjectPath* eOp, const char* assocClass, const char* resultClass,
+       const char* role, const char* resultRole, const char** properties) {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eOp);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eOp);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiAssociationMI* ami = dynamic_cast<CmpiAssociationMI*>(cmi);
    return ami->associators
@@ -318,13 +319,13 @@ CMPIStatus CmpiAssociationMI::driveAssociators
 }
 
 CMPIStatus CmpiAssociationMI::driveAssociatorNames
-      (CMPIAssociationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPIObjectPath* eOp, const char* assocClass, const char* resultClass,
+      (CMPIAssociationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPIObjectPath* eOp, const char* assocClass, const char* resultClass,
        const char* role, const char* resultRole) {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eOp);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eOp);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiAssociationMI* ami = dynamic_cast<CmpiAssociationMI*>(cmi);
    return ami->associatorNames
@@ -338,13 +339,13 @@ CMPIStatus CmpiAssociationMI::driveAssociatorNames
 }
 
 CMPIStatus CmpiAssociationMI::driveReferences
-      (CMPIAssociationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPIObjectPath* eOp, const char* resultClass, const char* role ,
-       char** properties) {
+      (CMPIAssociationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPIObjectPath* eOp, const char* resultClass, const char* role ,
+       const char** properties) {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eOp);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eOp);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiAssociationMI* ami = dynamic_cast<CmpiAssociationMI*>(cmi);
    return ami->references
@@ -357,12 +358,12 @@ CMPIStatus CmpiAssociationMI::driveReferences
 }
 
 CMPIStatus CmpiAssociationMI::driveReferenceNames
-      (CMPIAssociationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPIObjectPath* eOp, const char* resultClass, const char* role) {
+      (CMPIAssociationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPIObjectPath* eOp, const char* resultClass, const char* role) {
   try {
-   CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   CmpiObjectPath cop(eOp);
+   CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   CmpiObjectPath cop((CMPIObjectPath*)eOp);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiAssociationMI* ami = dynamic_cast<CmpiAssociationMI*>(cmi);
    return ami->referenceNames
@@ -420,15 +421,15 @@ CmpiStatus CmpiAssociationMI::referenceNames
 //---------------------------------------------------
 
 CMPIStatus CmpiMethodMI::driveInvokeMethod
-   (CMPIMethodMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-    CMPIObjectPath* eCop, const char* methodName,
-    CMPIArgs* eIn, CMPIArgs* eOut)
+   (CMPIMethodMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+    const CMPIObjectPath* eCop, const char* methodName,
+    const CMPIArgs* eIn, CMPIArgs* eOut)
 {
   try {
-   const CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
-   const CmpiArgs in(eIn);
+   const CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
+   const CmpiArgs in((CMPIArgs*)eIn);
    CmpiArgs out(eOut);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiMethodMI* mmi = dynamic_cast<CmpiMethodMI*>(cmi);
@@ -470,12 +471,12 @@ CmpiPropertyMI::CmpiPropertyMI(const CmpiBroker &mbp, const CmpiContext& ctx)
 }
 
 CMPIStatus CmpiPropertyMI::driveSetProperty
-      (CMPIPropertyMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPIObjectPath* eCop, char* name, CMPIData eData) {
+      (CMPIPropertyMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPIObjectPath* eCop, const char* name, CMPIData eData) {
   try {
-   const CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
+   const CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
    const CmpiData data(eData);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiPropertyMI* pmi = dynamic_cast<CmpiPropertyMI*>(cmi);
@@ -488,12 +489,12 @@ CMPIStatus CmpiPropertyMI::driveSetProperty
 }
 
 CMPIStatus CmpiPropertyMI::driveGetProperty
-      (CMPIPropertyMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPIObjectPath* eCop, char* name) {
+      (CMPIPropertyMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPIObjectPath* eCop, const char* name) {
   try {
-   const CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
+   const CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiPropertyMI* pmi = dynamic_cast<CmpiPropertyMI*>(cmi);
    return pmi->getProperty
@@ -535,13 +536,13 @@ CmpiIndicationMI::CmpiIndicationMI(const CmpiBroker &mbp, const CmpiContext& ctx
 }
 
 CMPIStatus CmpiIndicationMI::driveAuthorizeFilter
-      (CMPIIndicationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPISelectExp* eSe, const char* ns, CMPIObjectPath* eCop, 
+      (CMPIIndicationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPISelectExp* eSe, const char* ns, const CMPIObjectPath* eCop, 
        const char* user){
   try {
-   const CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
+   const CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
    const CmpiSelectExp se(eSe);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiIndicationMI* nmi = dynamic_cast<CmpiIndicationMI*>(cmi);
@@ -554,12 +555,12 @@ CMPIStatus CmpiIndicationMI::driveAuthorizeFilter
 }
 
 CMPIStatus CmpiIndicationMI::driveMustPoll
-      (CMPIIndicationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPISelectExp* eSe, const char* ns, CMPIObjectPath* eCop){
+      (CMPIIndicationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPISelectExp* eSe, const char* ns, const CMPIObjectPath* eCop){
   try {
-   const CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
+   const CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
    const CmpiSelectExp se(eSe);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiIndicationMI* nmi = dynamic_cast<CmpiIndicationMI*>(cmi);
@@ -572,13 +573,13 @@ CMPIStatus CmpiIndicationMI::driveMustPoll
 }
 
 CMPIStatus CmpiIndicationMI::driveActivateFilter
-      (CMPIIndicationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPISelectExp* eSe, const char* ns, CMPIObjectPath* eCop, 
+      (CMPIIndicationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPISelectExp* eSe, const char* ns, const CMPIObjectPath* eCop, 
        CMPIBoolean first){
-   const CmpiContext ctx(eCtx);
+   const CmpiContext ctx((CMPIContext*)eCtx);
   try {
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
    const CmpiSelectExp se(eSe);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiIndicationMI* nmi = dynamic_cast<CmpiIndicationMI*>(cmi);
@@ -591,13 +592,13 @@ CMPIStatus CmpiIndicationMI::driveActivateFilter
 }
 
 CMPIStatus CmpiIndicationMI::driveDeActivateFilter
-      (CMPIIndicationMI* mi, CMPIContext* eCtx, CMPIResult* eRslt,
-       CMPISelectExp* eSe, const char* ns, CMPIObjectPath* eCop, 
-       CMPIBoolean last){
+      (CMPIIndicationMI* mi, const CMPIContext* eCtx, const CMPIResult* eRslt,
+       const CMPISelectExp* eSe, const char* ns, const CMPIObjectPath* eCop, 
+       const CMPIBoolean last){
   try {
-   const CmpiContext ctx(eCtx);
-   CmpiResult rslt(eRslt);
-   const CmpiObjectPath cop(eCop);
+   const CmpiContext ctx((CMPIContext*)eCtx);
+   CmpiResult rslt((CMPIResult*)eRslt);
+   const CmpiObjectPath cop((CMPIObjectPath*)eCop);
    const CmpiSelectExp se(eSe);
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiIndicationMI* nmi = dynamic_cast<CmpiIndicationMI*>(cmi);
@@ -1184,7 +1185,7 @@ void CmpiInstance::setPropertyFilter(const char** properties, const char** keys)
 
 CmpiObjectPath CmpiInstance::getObjectPath() const {
    CMPIStatus rc={CMPI_RC_OK,NULL};
-   CmpiObjectPath cop(getEnc()->ft->getObjectPath(getEnc(),&rc));
+   CmpiObjectPath cop((CMPIObjectPath*)getEnc()->ft->getObjectPath(getEnc(),&rc));
    if (rc.rc!=CMPI_RC_OK) throw CmpiStatus(rc);
    return cop;
 }
