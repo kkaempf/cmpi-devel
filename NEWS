@@ -1,3 +1,9 @@
+Changes in 1.0.2
+================
+
+Bugs fixed:
+- 1236584 Fixed some rpmlint warnings in the spec file.
+
 Changes in 1.0.1
 ================
 

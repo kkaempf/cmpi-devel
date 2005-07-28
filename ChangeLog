@@ -1,3 +1,8 @@
+2005-07-28    <mihajlov@dyn-9-152-143-97.boeblingen.de.ibm.com>
+
+	* sblim-cmpi-devel.spec.in: 
+	Bug 1236584: Changes for rpmlint complaints.
+
 2005-05-13    <mihajlov@dyn-9-152-141-53.boeblingen.de.ibm.com>
 
 	* CmpiImpl.cpp: 

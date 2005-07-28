@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT(sblim-cmpi-devel, 1.0.1, <mihajlov@de.ibm.com>)
+AC_INIT(sblim-cmpi-devel, 1.0.2, <sblim-devel@lists.sourceforge.net>)
 AC_CONFIG_SRCDIR([CmpiImpl.cpp])
 AC_CONFIG_HEADER([config.h])
 
