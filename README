@@ -24,3 +24,12 @@ CMPI 1.0 and existing providers
 If you plan to build CMPI providers written before release 1.0.0 availability
 add "#define CMPI_VERSION 90" to the provider source or compile with 
 -DCMPI_VERSION=90 option.
+
+C++ Wrappers after 1.0.2
+========================
+
+Due to an incorrect definition in cmpidt.h up to cmpi-devel 1.0.2 the UINT32
+and SINT32 types were incorrectly defined as long ints.
+While this doesn't impact binary compatibility on 32-bit platforms, the C++
+wrapper is affected. It's necessary to recompile CMPI C++ providers with
+cmpi-devel 1.0.3 or higher.

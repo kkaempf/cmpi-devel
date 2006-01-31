@@ -86,10 +86,6 @@ public:
    */
    CmpiData(CMPISint32 d);
 
-   /** Constructor - singed 32 bit as input.
-   */
-   CmpiData(int d);
-
    /** Constructor - singed 64 bit as input.
    */
    CmpiData(CMPISint64 d);
@@ -105,10 +101,6 @@ public:
    /** Constructor - unsinged 32 bit as input.
    */
    CmpiData(CMPIUint32 d);
-
-   /** Constructor - unsinged 32 bit as input.
-   */
-   CmpiData(unsigned int d);
 
    /** Constructor - unsinged 64 bit as input.
    */
@@ -166,10 +158,6 @@ public:
    */
    operator CMPISint32() const;
 
-   /** Extracting signed 32 bit.
-   */
-   operator int() const;
-
    /** Extracting signed 64 bit.
    */
    operator CMPISint64() const;
@@ -185,10 +173,6 @@ public:
    /** Extracting unsigned 32 bit.
    */
    operator CMPIUint32() const;
-
-   /** Extracting unsigned 32 bit.
-   */
-   operator unsigned int() const;
 
    /** Extracting unsigned 64 bit.
    */

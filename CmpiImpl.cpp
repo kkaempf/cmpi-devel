@@ -847,12 +847,6 @@ CmpiData::CmpiData(CMPISint32 d) {
    _data.type=CMPI_sint32;
 }
 
-CmpiData::CmpiData(int d) {
-   _data.state=CMPI_goodValue;
-   _data.value.sint32=d;
-   _data.type=CMPI_sint32;
-}
-
 CmpiData::CmpiData(CMPISint64 d) {
    _data.state=CMPI_goodValue;
    _data.value.sint64=d;
@@ -872,12 +866,6 @@ CmpiData::CmpiData(CMPIUint16 d) {
 }
 
 CmpiData::CmpiData(CMPIUint32 d) {
-   _data.state=CMPI_goodValue;
-   _data.value.sint32=d;
-   _data.type=CMPI_uint32;
-}
-
-CmpiData::CmpiData(unsigned int d) {
    _data.state=CMPI_goodValue;
    _data.value.sint32=d;
    _data.type=CMPI_uint32;
@@ -965,12 +953,6 @@ CmpiData::operator CMPISint32() const {
    else
       return _data.value.sint32;
 }
-CmpiData::operator int() const {
-   if (_data.type!=CMPI_sint32)
-      throw CmpiStatus(CMPI_RC_ERR_TYPE_MISMATCH);
-   else
-      return _data.value.sint32;
-}
 
 CmpiData::operator CMPISint64() const {
    if (_data.type!=CMPI_sint64)
@@ -998,13 +980,6 @@ CmpiData::operator unsigned short() const {
 }
 
 CmpiData::operator CMPIUint32() const {
-   if (_data.type!=CMPI_uint32)
-      throw CmpiStatus(CMPI_RC_ERR_TYPE_MISMATCH);
-   else
-      return _data.value.uint32;
-}
-
-CmpiData::operator unsigned int() const {
    if (_data.type!=CMPI_uint32)
       throw CmpiStatus(CMPI_RC_ERR_TYPE_MISMATCH);
    else

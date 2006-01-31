@@ -1,3 +1,12 @@
+2006-01-31    <mihajlov@dyn-9-152-143-45.boeblingen.de.ibm.com>
+
+	* cmpi/cmpidt.h, cmpi/cmpift.h :
+	Bug 1420604: Fixed CMPI 1.0 compliance problems.
+
+	* cmpi/CmpiData.h, CmpiImpl.cpp :
+	Bug 1420604 (Fallout): Adjusted C++ wrapper to reflect the
+	C definitions. This is also in line with the OpenPegasus definitions.
+
 2005-07-28    <mihajlov@dyn-9-152-143-97.boeblingen.de.ibm.com>
 
 	* sblim-cmpi-devel.spec.in: 
