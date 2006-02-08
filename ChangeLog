@@ -1,3 +1,9 @@
+2006-02-08    <mihajlov@dyn-9-152-143-45.boeblingen.de.ibm.com>
+
+	* cmpi/CmpiBaseMI.h, cmpi/cmpimacs.h, CmpiImpl.cpp:
+	Bug 1420604: The CMPI C++ wrappers did not compile due to
+	incorrect macro/class definitions; fixed.
+
 2006-01-31    <lynnmoss@us.ibm.com>
 
 	* cmpi/CmpiArray.h

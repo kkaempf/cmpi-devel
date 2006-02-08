@@ -1,3 +1,9 @@
+Changes in 1.0.4
+================
+
+Bugs fixed:
+- 1420604 Fixed (again) Compatibility Problem with C++ providers.
+
 Changes in 1.0.3
 ================
 
