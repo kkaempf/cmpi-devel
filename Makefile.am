@@ -1,8 +1,14 @@
 # $Id$
 
+AM_CPPFLAGS=-Wall -I$(srcdir)/cmpi
+
 docdir=$(datadir)/doc/$(PACKAGE)-$(VERSION)
 
+if INSTALL_LIBRARY
 lib_LTLIBRARIES=libcmpiCppImpl.la
+else
+noinst_LTLIBRARIES=libcmpiCppImpl.la
+endif
 
 nobase_include_HEADERS=cmpi/CmpiArgs.h cmpi/CmpiBroker.h cmpi/cmpidt.h \
 	cmpi/CmpiInstanceMI.h cmpi/cmpios.h cmpi/CmpiStatus.h \
@@ -16,7 +22,23 @@ nobase_include_HEADERS=cmpi/CmpiArgs.h cmpi/CmpiBroker.h cmpi/cmpidt.h \
 	cmpi/CmpiSelectExp.h
 
 libcmpiCppImpl_la_SOURCES=CmpiImpl.cpp
-libcmpiCppImpl_la_CPPFLAGS=-Wall -I$(srcdir)/cmpi
+
+check_LTLIBRARIES=libc_instance.la libcxx_instance.la
+check_PROGRAMS=c_instance_link cxx_instance_link
+
+libc_instance_la_SOURCES=test/c_instance.c
+
+libcxx_instance_la_SOURCES=test/cxx_instance.cxx
+
+c_instance_link_SOURCES=test/c_instance_link.c
+c_instance_link_LDADD=-lc_instance
+c_instance_link_DEPENDENCIES=libc_instance.la
+
+cxx_instance_link_SOURCES=test/cxx_instance_link.cxx
+cxx_instance_link_LDADD=-lcxx_instance -lcmpiCppImpl
+cxx_instance_link_DEPENDENCIES=libc_instance.la libcmpiCppImpl.la
+
+TESTS=$(check_PROGRAMS)
 
 EXTRA_DIST=$(PACKAGE).spec
 

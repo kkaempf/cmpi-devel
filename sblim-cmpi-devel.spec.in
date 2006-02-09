@@ -4,7 +4,7 @@
 # Package spec for cmpi-devel
 #
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Summary: SBLIM CMPI Provider Development Support
 Name: @PACKAGE_TARNAME@
@@ -15,6 +15,7 @@ URL: http://www.sblim.org
 License: CPL
 
 Provides: cmpi-devel
+Conflicts: tog-pegasus-devel
 
 Source0: http://prdownloads.sourceforge.net/sblim/%{name}-%{version}.tar.bz2
 
@@ -26,13 +27,10 @@ and can be used standalone.
 
 %setup -T -b 0 -n %{name}-%{version}
 
-export PATCH_GET=0
-#%patch0 -p1
-
 %build
 
-%configure --disable-debug
-make
+%configure
+make %{?_smp_mflags}
 
 %install
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT 
@@ -56,5 +54,8 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*a
 %postun -p /sbin/ldconfig
 
 %changelog
-* Thu Jul 28 2005 Viktor Mihajlovski <mihajlov@de.ibm.com> %{version}-%{release}
+* Thu Feb 09 2006 Viktor Mihajlovski <mihajlov@de.ibm.com> 1.0.4-0
+  - Make tog-pegasus-devel a conflicting package
+
+* Thu Jul 28 2005 Viktor Mihajlovski <mihajlov@de.ibm.com> 1.0.1-0
   - Updates for rpmlint complaints

@@ -1,11 +1,20 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT(sblim-cmpi-devel, 1.0.3a, <sblim-devel@lists.sourceforge.net>)
+AC_INIT(sblim-cmpi-devel, 1.0.4, <sblim-devel@lists.sourceforge.net>)
 AC_CONFIG_SRCDIR([CmpiImpl.cpp])
 AC_CONFIG_HEADER([config.h])
 
 AM_INIT_AUTOMAKE
+
+# Configure options
+AC_ARG_ENABLE(library,
+	[AC_HELP_STRING([--disable-library],
+		[disables installation of C++ library.])],
+	[enable_library=$enableval],
+	[enable_library="yes"]
+	)
+AM_CONDITIONAL(INSTALL_LIBRARY,[test "$enable_library" == "yes"]) 
 
 # Checks for programs.
 AC_PROG_CXX

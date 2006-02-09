@@ -1,8 +1,12 @@
 Changes in 1.0.4
 ================
 
+New Features:
+- Added rudimentary set of test providers for compile/link verification.
+
 Bugs fixed:
 - 1420604 Fixed (again) Compatibility Problem with C++ providers.
+- 1428205 generic RPM implicitly conflicts with tog-pegasus-devel
 
 Changes in 1.0.3
 ================

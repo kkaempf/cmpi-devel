@@ -1,3 +1,17 @@
+2006-02-09    <mihajlov@dyn-9-152-143-45.boeblingen.de.ibm.com>
+
+	* test/cxx_instance.cxx, test/c_instance.c, 
+	test/c_instance_link.c, test/cxx_instance_link.cxx:
+	Set of compile and link verification test files. Only very
+	rudimentary at the moment.
+	
+	* sblim-cmpi-devel.spec.in, sblim-cmpi-devel.rh.spec,
+	configure.ac, Makefile.am:
+	Bug 1428205: Modified generic spec to explicitly conflict the
+	pegasus devel RPM. Added new configure option -disable-library
+	for support of an RH/Fedora specific RPM, which allows to
+	omit the offending library.
+
 2006-02-08    <mihajlov@dyn-9-152-143-45.boeblingen.de.ibm.com>
 
 	* cmpi/CmpiBaseMI.h, cmpi/cmpimacs.h, CmpiImpl.cpp:
