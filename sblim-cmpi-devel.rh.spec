@@ -23,9 +23,10 @@ Provides: cmpi-devel
 Source0: http://prdownloads.sourceforge.net/sblim/%{name}-%{version}.tar.bz2
 
 %Description
-This packages provides the C and C++ CMPI header files needed by provider developers
-and can be used standalone. If used for C++ provider development it is also necessary
-to have tog-pegasus-devel installed.
+This packages provides the C and C++ CMPI header files needed by 
+provider developers and can be used standalone. If used for 
+C++ provider development it is also necessary to have 
+tog-pegasus-devel installed.
 
 %prep
 

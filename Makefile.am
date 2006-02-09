@@ -1,6 +1,8 @@
 # $Id$
 
-AM_CPPFLAGS=-Wall -I$(srcdir)/cmpi
+AM_CFLAGS=-Wall
+AM_CXXFLAGS=-Wall
+AM_CPPFLAGS=-I$(srcdir)/cmpi
 
 docdir=$(datadir)/doc/$(PACKAGE)-$(VERSION)
 
