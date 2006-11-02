@@ -698,13 +698,13 @@ extern "C" {
 
        /** Gets a Context entry value defined by its index.
 	 @param ctx Context this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned Context entry name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Entry value.
       */
      CMPIData (*getEntryAt)
-              (const CMPIContext* ctx, unsigned int index, CMPIString** name,
+              (const CMPIContext* ctx, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc);
 
       /** Gets the number of entries contained in this Context.
@@ -907,13 +907,13 @@ extern "C" {
 
        /** Gets a Property value defined by its index.
 	 @param inst Instance this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned property name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Property value.
       */
      CMPIData (*getPropertyAt)
-              (const CMPIInstance* inst, unsigned int index, CMPIString** name,
+              (const CMPIInstance* inst, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc);
 
       /** Gets the number of properties contained in this Instance.
@@ -1090,13 +1090,13 @@ extern "C" {
 
        /** Gets a key property value defined by its index.
 	 @param op ObjectPath this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned property name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Data value.
       */
      CMPIData (*getKeyAt)
-              (const CMPIObjectPath* op, unsigned int index, CMPIString** name,
+              (const CMPIObjectPath* op, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc);
 
       /** Gets the number of key properties contained in this ObjectPath.
@@ -1367,12 +1367,12 @@ extern "C" {
 
        /** Return a SubCond element based on its index.
 	 @param sc SelectCond this pointer.
-	 @param index Position in the internal SubCoind array.
+	 @param ind Position in the internal SubCoind array.
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return The indexed SubCond element.
       */
      CMPISubCond* (*getSubCondAt)
-              (const CMPISelectCond* sc, unsigned int index, CMPIStatus* rc);
+              (const CMPISelectCond* sc, unsigned int ind, CMPIStatus* rc);
    };
 
 
@@ -1443,12 +1443,12 @@ extern "C" {
 
        /** Return a Predicate element based on its index.
 	 @param sc SubCond this pointer.
-	 @param index Position in the internal Predicate array.
+	 @param ind Position in the internal Predicate array.
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return The indexed Predicate element.
       */
      CMPIPredicate* (*getPredicateAt)
-              (const CMPISubCond* sc, unsigned int index, CMPIStatus* rc);
+              (const CMPISubCond* sc, unsigned int ind, CMPIStatus* rc);
 
        /** Return a named Predicate element.
 	 @param sc SubCond this pointer.
@@ -1633,13 +1633,13 @@ extern "C" {
 
        /** Gets a Argument value defined by its index.
 	 @param as Args this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned argument name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Argument value.
       */
      CMPIData (*getArgAt)
-              (const CMPIArgs* as, unsigned int index, CMPIString** name,
+              (const CMPIArgs* as, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc);
 
       /** Gets the number of arguments contained in this Args.
@@ -1794,22 +1794,22 @@ extern "C" {
 
        /** Gets an element value defined by its index.
 	 @param ar Array this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Element value.
       */
      CMPIData (*getElementAt)
-             (const CMPIArray* ar, CMPICount index, CMPIStatus* rc);
+             (const CMPIArray* ar, CMPICount ind, CMPIStatus* rc);
 
        /** Sets an element value defined by its index.
 	 @param ar Array this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
          @param value Address of value structure.
          @param type Value type.
 	 @return Service return status.
       */
      CMPIStatus (*setElementAt)
-             (CMPIArray* ar, CMPICount index, const CMPIValue* value, CMPIType type);
+             (CMPIArray* ar, CMPICount ind, const CMPIValue* value, CMPIType type);
    };
 
 

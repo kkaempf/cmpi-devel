@@ -39,8 +39,8 @@
  noReturn CMReturn(CMPIrc rc);
 #else
 #define CMReturn(rc) \
-      { CMPIStatus stat={(rc),NULL}; \
-         return stat; }
+      { CMPIStatus cmpi_stat={(rc),NULL}; \
+         return cmpi_stat; }
 #endif
 
 #ifdef DOC_ONLY
@@ -53,8 +53,8 @@
  noReturn CMReturnWithString(CMPIrc rc, CMPIString *str);
 #else
 #define CMReturnWithString(rc,str) \
-      { CMPIStatus stat={(rc),(str)}; \
-         return stat; }
+      { CMPIStatus cmpi_stat={(rc),(str)}; \
+         return cmpi_stat; }
 #endif
 
 #ifdef DOC_ONLY
@@ -68,9 +68,9 @@
  noReturn CMReturnWithChars(const CMPIBroker *mb, CMPIrc rc, char *msg);
 #else
 #define CMReturnWithChars(b,rc,chars) \
-      { CMPIStatus stat={(rc),NULL}; \
-         stat.msg=(b)->eft->newString((b),(chars),NULL); \
-         return stat; }
+      { CMPIStatus cmpi_stat={(rc),NULL}; \
+         cmpi_stat.msg=(b)->eft->newString((b),(chars),NULL); \
+         return cmpi_stat; }
 #endif
 
 
@@ -500,15 +500,15 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Gets a Property value defined by its index.
 	 @param inst Instance this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned property name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Property value.
       */
    inline static   CMPIData CMGetPropertyAt
-              (const CMPIInstance* inst, unsigned int index, CMPIString** name,
+              (const CMPIInstance* inst, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc)
-	{ return ((inst)->ft->getPropertyAt((inst),(index),(name),(rc))); }
+	{ return ((inst)->ft->getPropertyAt((inst),(ind),(name),(rc))); }
 #else
  #define CMGetPropertyAt(i,num,s,rc) \
                   ((i)->ft->getPropertyAt((i),(num),(s),(rc)))
@@ -703,15 +703,15 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Gets a key property value defined by its index.
 	 @param op ObjectPath this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned property name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Data value.
       */
    inline static   CMPIData CMGetKeyAt
-              (const CMPIObjectPath* op,unsigned int index, CMPIString** name,
+              (const CMPIObjectPath* op,unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc)
-	{ return ((op)->ft->getKeyAt((op),(index),(name),(rc))); }
+	{ return ((op)->ft->getKeyAt((op),(ind),(name),(rc))); }
 #else
   #define CMGetKeyAt(p,i,n,rc)          ((p)->ft->getKeyAt((p),(i),(n),(rc)))
 #endif
@@ -807,13 +807,13 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Gets an element value defined by its index.
 	 @param ar Array this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Element value.
       */
    inline static   CMPIData CMGetArrayElementAt
-             (const CMPIArray* ar, CMPICount index, CMPIStatus* rc)
-	{ return ((ar)->ft->getElementAt((ar),(index),(rc))); }
+             (const CMPIArray* ar, CMPICount ind, CMPIStatus* rc)
+	{ return ((ar)->ft->getElementAt((ar),(ind),(rc))); }
 #else
    #define CMGetArrayElementAt(a,n,rc) \
                                     ((a)->ft->getElementAt((a),(n),(rc)))
@@ -822,14 +822,14 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Sets an element value defined by its index.
 	 @param ar Array this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
          @param value Address of value structure.
          @param type Value type.
 	 @return Service return status.
       */
    inline static   CMPIStatus CMSetArrayElementAt
-             (CMPIArray* ar, CMPICount index, const CMPIValue* value, CMPIType type)
-	{ return ((ar)->ft->setElementAt((ar),(index),(value),(type))); }
+             (CMPIArray* ar, CMPICount ind, const CMPIValue* value, CMPIType type)
+	{ return ((ar)->ft->setElementAt((ar),(ind),(value),(type))); }
 #else
    #define CMSetArrayElementAt(a,n,v,t) \
                      ((a)->ft->setElementAt((a),(n),(CMPIValue*)(v),(t)))
@@ -874,15 +874,15 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Gets a Argument value defined by its index.
 	 @param as Args this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned argument name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Argument value.
       */
    inline static   CMPIData CMGetArgAt
-              (const CMPIArgs* as, unsigned int index, CMPIString** name,
+              (const CMPIArgs* as, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc)
-	{ return  ((as)->ft->getArgAt((as),(index),(name),(rc))); }
+	{ return  ((as)->ft->getArgAt((as),(ind),(name),(rc))); }
 #else
   #define CMGetArgAt(a,p,n,rc)       ((a)->ft->getArgAt((a),(p),(n),(rc)))
 #endif
@@ -1086,15 +1086,15 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Gets a Context entry value defined by its index.
 	 @param ctx Context this pointer.
-	 @param index Position in the internal Data array.
+	 @param ind Position in the internal Data array.
 	 @param name Output: Returned Context entry name (suppressed when NULL).
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return Entry value.
       */
    inline static   CMPIData CMGetContextEntryAt
-              (const CMPIContext* ctx, unsigned int index, CMPIString** name,
+              (const CMPIContext* ctx, unsigned int ind, CMPIString** name,
 	       CMPIStatus* rc)
-	{ return ((ctx)->ft->getEntryAt((ctx),(index),(name),(rc))); }
+	{ return ((ctx)->ft->getEntryAt((ctx),(ind),(name),(rc))); }
 #else
   #define CMGetContextEntryAt(c,p,n,rc) \
                          ((c)->ft->getEntryAt((c),(p),(n),(rc)))
@@ -1232,13 +1232,13 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Return a SubCond element based on its index.
 	 @param sc SelectCond this pointer.
-	 @param index Position in the internal SubCoind array.
+	 @param ind Position in the internal SubCoind array.
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return The indexed SubCond element.
       */
    inline static   CMPISubCond* CMGetSubCondAt
-              (const CMPISelectCond* sc, unsigned int index, CMPIStatus* rc)
-	{ return ((sc)->ft->getSubCondAt((sc),(index),(rc))); }
+              (const CMPISelectCond* sc, unsigned int ind, CMPIStatus* rc)
+	{ return ((sc)->ft->getSubCondAt((sc),(ind),(rc))); }
 #else
   #define CMGetSubCondAt(c,p,rc)    ((c)->ft->getSubCondAt((c),(p),(rc)))
 #endif
@@ -1265,13 +1265,13 @@ inline static   void CMSetStatusWithChars(const CMPIBroker *mb, CMPIStatus* st, 
 #ifdef CMPI_INLINE
        /** Return a Predicate element based on its index.
 	 @param sc SubCond this pointer.
-	 @param index Position in the internal Predicate array.
+	 @param ind Position in the internal Predicate array.
 	 @param rc Output: Service return status (suppressed when NULL).
 	 @return The indexed Predicate element.
       */
    inline static   CMPIPredicate* CMGetPredicateAt
-              (const CMPISubCond* sc, unsigned int index, CMPIStatus* rc)
-	{ return ((sc)->ft->getPredicateAt((sc),(index),(rc))); }
+              (const CMPISubCond* sc, unsigned int ind, CMPIStatus* rc)
+	{ return ((sc)->ft->getPredicateAt((sc),(ind),(rc))); }
 #else
    #define CMGetPredicateAt(s,p,rc) \
                                   ((s)->ft->getPredicateAt((s),(p),(rc)))
