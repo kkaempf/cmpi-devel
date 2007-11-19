@@ -9,7 +9,7 @@
  * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
  *
  * You can obtain a current copy of the Common Public License from
- * http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
+ * http://www.opensource.org/licenses/cpl1.0.txt
  *
  * Author:        Adrian Schuur <schuur@de.ibm.com>
  * Contributors:  Konrad Rzeszutek <darnok@us.ibm.com>
