@@ -1,3 +1,8 @@
+2008-02-07 Chris Buccella  <buccella@linux.vnet.ibm.com>
+
+	* cmpimacs.h:
+	Fixed 1888906: Typo in cmpi-devel's cmpimacs.h for CMSetObjectPath macro
+
 2006-02-09    <mihajlov@dyn-9-152-143-45.boeblingen.de.ibm.com>
 
 	* test/cxx_instance.cxx, test/c_instance.c, 

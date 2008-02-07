@@ -1,3 +1,9 @@
+Changes since 1.0.4
+===================
+
+Bugs fixed:
+- 1888906 Fixed Typo in cmpi-devel's cmpimacs.h for CMSetObjectPath macro
+
 Changes in 1.0.4
 ================
 
