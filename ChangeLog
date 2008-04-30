@@ -1,3 +1,8 @@
+2008-04-30 Chris Buccella  <buccella@linux.vnet.ibm.com>
+
+	* cmpi/cmpift.h:
+	Fixed 1954980: Wrong type for _CMPIBroker.brokerCapabilities
+
 2008-02-07 Chris Buccella  <buccella@linux.vnet.ibm.com>
 
 	* cmpimacs.h:

@@ -3,6 +3,7 @@ Changes since 1.0.4
 
 Bugs fixed:
 - 1888906 Fixed Typo in cmpi-devel's cmpimacs.h for CMSetObjectPath macro
+- 1954980 Fixed Wrong type for _CMPIBroker.brokerCapabilities
 
 Changes in 1.0.4
 ================
