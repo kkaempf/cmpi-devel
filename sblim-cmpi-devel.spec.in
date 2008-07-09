@@ -12,7 +12,7 @@ Version: @PACKAGE_VERSION@
 Release: 0
 Group: Systems Management/Base
 URL: http://www.sblim.org
-License: CPL
+License: EPL
 
 Provides: cmpi-devel
 Conflicts: tog-pegasus-devel
@@ -54,6 +54,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*a
 %postun -p /sbin/ldconfig
 
 %changelog
+* Wed Jul 09 2008 Tyrel Datwyler <tyreld@us.ibm.com> 1.0.5-0
+  - Changed license from CPL to EPL
+
 * Thu Feb 09 2006 Viktor Mihajlovski <mihajlov@de.ibm.com> 1.0.4-0
   - Make tog-pegasus-devel a conflicting package
 

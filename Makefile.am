@@ -42,7 +42,7 @@ cxx_instance_link_DEPENDENCIES=libc_instance.la libcmpiCppImpl.la
 
 TESTS=$(check_PROGRAMS)
 
-EXTRA_DIST=$(PACKAGE).spec
+EXTRA_DIST=$(PACKAGE).spec license.html
 
 install-data-local: 
 	test -d $(DESTDIR)$(docdir) || $(mkdir_p) $(DESTDIR)$(docdir)

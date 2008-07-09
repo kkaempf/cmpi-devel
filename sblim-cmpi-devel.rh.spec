@@ -12,11 +12,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Summary: SBLIM CMPI Provider Development Support
 Name: sblim-cmpi-devel
-Version: 1.0.4
-Release: 1
+Version: 1.0.5
+Release: 0
 Group: Systems Management/Base
 URL: http://www.sblim.org
-License: CPL
+License: EPL
 
 Provides: cmpi-devel
 
@@ -55,5 +55,8 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %changelog
+* Wed Jul 09 2008 Tyrel Datwyler <tyreld@us.ibm.com> 1.0.5-0
+  - Changed license from CPL to EPL
+  
 * Thu Feb 09 2006 Viktor Mihajlovski <mihajlov@de.ibm.com> 1.0.4-1
   - Initial RH/Fedora version
