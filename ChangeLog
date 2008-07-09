@@ -1,3 +1,21 @@
+2008-07-09 Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * COPYING, CmpiImpl.cpp, Makefile.am, configure.ac, sblim-cmpi-devel.rh.spec 
+   sblim-cmpi-devel.spec.in, cmpi/CmpiArgs.h, cmpi/CmpiArray.h, 
+   cmpi/CmpiAssociationMI.h, cmpi/CmpiBaseMI.h, cmpi/CmpiBooleanData.h, 
+   cmpi/CmpiBroker.h, cmpi/CmpiCharData.h, cmpi/CmpiContext.h, 
+   cmpi/CmpiData.h, cmpi/CmpiDateTime.h, cmpi/CmpiEnumeration.h, 
+   cmpi/CmpiIndicationMI.h, cmpi/CmpiInstance.h, cmpi/CmpiInstanceMI.h, 
+   cmpi/CmpiMethodMI.h, cmpi/CmpiObject.h, cmpi/CmpiObjectPath.h, 
+   cmpi/CmpiPropertyMI.h, cmpi/CmpiProviderBase.h, cmpi/CmpiResult.h, 
+   cmpi/CmpiSelectExp.h, cmpi/CmpiStatus.h, cmpi/CmpiString.h,
+   cmpi/Linkage.h, cmpi/cmpidt.h, cmpi/cmpift.h, cmpi/cmpimacs.h,
+   cmpi/cmpios.h, test/cxx_instance.cxx, test/c_instance.c,
+   test/c_instance_link.c, test/cxx_instance_link.cxx
+
+   * Added: license.html
+   Feature 2014066: changed licensing from CPL to EPL
+
 2008-04-30 Chris Buccella  <buccella@linux.vnet.ibm.com>
 
 	* cmpi/cmpift.h:

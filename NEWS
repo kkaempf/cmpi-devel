@@ -1,5 +1,8 @@
-Changes since 1.0.4
+Changes in 1.0.5
 ===================
+
+New Features:
+- 2014066 changed licensing from CPL to EPL
 
 Bugs fixed:
 - 1888906 Fixed Typo in cmpi-devel's cmpimacs.h for CMSetObjectPath macro
