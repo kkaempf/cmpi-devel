@@ -1,3 +1,6 @@
+Bugs fixed:
+- 2128836 Fixed C++ IndicationMI out of line with cmpift.h
+
 Changes in 1.0.5
 ===================
 

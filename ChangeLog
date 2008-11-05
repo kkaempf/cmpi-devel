@@ -1,3 +1,8 @@
+2008-11-05 Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * CmpiImpl.cpp, cmpi/CmpiIndicationMI.h:
+   Fixed 2128836: C++ IndicationMI out of line with cmpift.h
+
 2008-07-09 Tyrel Datwyler <tyreld@us.ibm.com>
 
    * COPYING, CmpiImpl.cpp, Makefile.am, configure.ac, sblim-cmpi-devel.rh.spec 
