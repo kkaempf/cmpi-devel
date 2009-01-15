@@ -1,5 +1,6 @@
 Bugs fixed:
 - 2128836 Fixed C++ IndicationMI out of line with cmpift.h
+- 2508518 Fixed Indication function table out of line with spec
 
 Changes in 1.0.5
 ===================

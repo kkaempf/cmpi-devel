@@ -2597,9 +2597,9 @@ extern "C" {
      CMPIStatus (*deActivateFilter)
              (CMPIIndicationMI* mi, const CMPIContext* ctx, 
               const CMPISelectExp* se, const  char *ns, const CMPIObjectPath* op, CMPIBoolean last);
-     void (*enableIndications)
+     CMPIStatus (*enableIndications)
             (CMPIIndicationMI* mi, const CMPIContext *);
-     void (*disableIndications)
+     CMPIStatus (*disableIndications)
             (CMPIIndicationMI* mi, const CMPIContext *);
 
   };

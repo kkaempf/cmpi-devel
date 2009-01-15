@@ -607,7 +607,7 @@ CMPIStatus CmpiIndicationMI::driveDeActivateFilter
   }
 }
 
-void CmpiIndicationMI::driveEnableIndications
+CMPIStatus CmpiIndicationMI::driveEnableIndications
       (CMPIIndicationMI* mi, const CMPIContext* eCtx)
 {
   try {
@@ -615,13 +615,14 @@ void CmpiIndicationMI::driveEnableIndications
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiIndicationMI* nmi = dynamic_cast<CmpiIndicationMI*>(cmi);
    return nmi->enableIndications
-     (ctx);
+     (ctx).status();
   } catch (CmpiStatus& stat) {
     cerr << "caught status :" << stat.rc() << " "  << stat.msg() << endl;
+    return stat.status();
   }
 }
 
-void CmpiIndicationMI::driveDisableIndications
+CMPIStatus CmpiIndicationMI::driveDisableIndications
       (CMPIIndicationMI* mi, const CMPIContext* eCtx)
 {
   try {
@@ -629,9 +630,10 @@ void CmpiIndicationMI::driveDisableIndications
    CmpiBaseMI* cmi = reinterpret_cast<CmpiBaseMI*> (mi->hdl);
    CmpiIndicationMI* nmi = dynamic_cast<CmpiIndicationMI*>(cmi);
    return nmi->disableIndications
-     (ctx);
+     (ctx).status();
   } catch (CmpiStatus& stat) {
     cerr << "caught status :" << stat.rc() << " "  << stat.msg() << endl;
+    return stat.status();
   }
 }
 
@@ -668,12 +670,14 @@ CmpiStatus CmpiIndicationMI::deActivateFilter
    return CmpiStatus(CMPI_RC_ERR_NOT_SUPPORTED);
 }
 
-void CmpiIndicationMI::enableIndications(const CmpiContext& ctx)
+CmpiStatus CmpiIndicationMI::enableIndications(const CmpiContext& ctx)
 {
+   return CmpiStatus(CMPI_RC_ERR_NOT_SUPPORTED);
 }
 
-void CmpiIndicationMI::disableIndications(const CmpiContext& ctx)
+CmpiStatus CmpiIndicationMI::disableIndications(const CmpiContext& ctx)
 {
+   return CmpiStatus(CMPI_RC_ERR_NOT_SUPPORTED);
 }
 
 

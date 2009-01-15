@@ -57,9 +57,9 @@ public:
    (CMPIIndicationMI* mi, const CMPIContext* eCtx,
     const CMPISelectExp* se, const char* ns, 
     const CMPIObjectPath* op, CMPIBoolean last);
-   static void driveEnableIndications
+   static CMPIStatus driveEnableIndications
    (CMPIIndicationMI* mi, const CMPIContext* eCtx);
-   static void driveDisableIndications
+   static CMPIStatus driveDisableIndications
    (CMPIIndicationMI* mi, const CMPIContext* eCtx);
 
    virtual CmpiStatus authorizeFilter
@@ -77,8 +77,8 @@ public:
    (const CmpiContext& ctx, 
     const CmpiSelectExp& se, const char* ns, const CmpiObjectPath& op,
     CmpiBoolean last);
-   virtual void enableIndications(const CmpiContext& ctx);
-   virtual void disableIndications(const CmpiContext& ctx);
+   virtual CmpiStatus enableIndications(const CmpiContext& ctx);
+   virtual CmpiStatus disableIndications(const CmpiContext& ctx);
 };
 
 #endif
