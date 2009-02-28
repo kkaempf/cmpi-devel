@@ -1,3 +1,12 @@
+2009-02-27 Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * CmpiImpl.cpp, Makefile.am, configure.ac, cmpi/cmpift.h, cmpi/cmpidt.h,
+   cmpi/cmpimacs.h, cmpi/cmpios.h:
+
+   * Added: cmpi/cmpipl.h
+
+   Feature 1702153: enablement for CMPI 2.0 standard   
+
 2009-01-14 Tyrel Datwyler <tyreld@us.ibm.com>
 
    * CmpiImpl.cpp, cmpi/CmpiIndicationMI.h, cmpi/cmpift.h:
