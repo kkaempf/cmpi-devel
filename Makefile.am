@@ -2,7 +2,8 @@
 
 AM_CFLAGS=-Wall
 AM_CXXFLAGS=-Wall
-AM_CPPFLAGS=-I$(srcdir)/cmpi
+AM_CPPFLAGS=-I$(srcdir)/cmpi \
+            @SBLIM_CMPI_PLATFORM@
 
 docdir=$(datadir)/doc/$(PACKAGE)-$(VERSION)
 

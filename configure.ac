@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT(sblim-cmpi-devel, 1.0.6, <sblim-devel@lists.sourceforge.net>)
+AC_INIT(sblim-cmpi-devel, 2.0.0, <sblim-devel@lists.sourceforge.net>)
 AC_CONFIG_SRCDIR([CmpiImpl.cpp])
 AC_CONFIG_HEADER([config.h])
 
@@ -15,6 +15,14 @@ AC_ARG_ENABLE(library,
 	[enable_library="yes"]
 	)
 AM_CONDITIONAL(INSTALL_LIBRARY,[test "$enable_library" == "yes"]) 
+
+AC_CANONICAL_HOST
+case ${host_os} in
+   linux*) SBLIM_CMPI_PLATFORM="-D CMPI_PLATFORM_LINUX_GENERIC_GNU"
+   ;;
+esac
+
+AC_SUBST(SBLIM_CMPI_PLATFORM)
 
 # Checks for programs.
 AC_PROG_CXX

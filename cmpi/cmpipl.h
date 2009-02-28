@@ -2,7 +2,7 @@
  *
  * $Id$
  *
- * (C) Copyright IBM Corp. 2003, 2005, 2006, 2008
+ * (C) Copyright IBM Corp. 2006, 2008
  *
  * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
  * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
@@ -11,10 +11,10 @@
  * You can obtain a current copy of the Eclipse Public License from
  * http://www.opensource.org/licenses/eclipse-1.0.txt
  *
- * Author:        Adrian Schuur <schuur@de.ibm.com>
- * Contributors:
+ * Author:        
+ * Contributors:  
  *
- * Description: CMPI OS Specific Definions
+ * Description: CMPI Platform Definitions
  *
  */
 
@@ -42,56 +42,24 @@
 /*                                                                           */
 /* ------------------------------------------------------------------------- */
 
-#ifndef _CMPIOS_H_
-#   define _CMPIOS_H_
+#ifndef _CMPIPL_H_
+#   define _CMPIPL_H_
 
-#   include "cmpipl.h"
-#   include <stdlib.h>          // To get the size_t
-#   define CMPI_THREAD_RETURN      void*
-#   define CMPI_THREAD_TYPE        void*
-#   define CMPI_MUTEX_TYPE         void*
-#   define CMPI_COND_TYPE          void*
+// There are the following list of platforms
 
-#   if defined(CMPI_PLATFORM_WIN32_IX86_MSVC)
-#      define CMPI_THREAD_CDECL    __stdcall
-#      define CMPI_THREAD_KEY_TYPE unsigned long int
-
-#   ifndef HAVE_STRUCT_TIMESPEC
-#       define HAVE_STRUCT_TIMESPEC
-	    struct timespec
-	    {
-			long tv_sec;
-			long tv_nsec;
-	    };
-#   endif /* HAVE_STRUCT_TIMESPEC */
-
-#   elif defined(CMPI_PLATFORM_ZOS_ZSERIES_IBM)
-#      ifndef __cplusplus
-#      include <pthread.h>
-#         define CMPI_THREAD_CDECL
-#      else
-#         define CMPI_THREAD_CDECL    __cdecl
-#      endif
-#      define CMPI_THREAD_KEY_TYPE  pthread_key_t
-#   else
-#      define CMPI_THREAD_CDECL
-#      define CMPI_THREAD_KEY_TYPE unsigned long int
-#   endif
-
-/* Define CMPI_EXPORT */
-#   if defined(CMPI_PLATFORM_WIN32_IX86_MSVC)
-#      define CMPI_EXPORT __declspec(dllexport)
-#   elif defined(CMPI_PLATFORM_LINUX_GENERIC_GNU) && (__GNUC__ >= 4)
-#      define CMPI_EXPORT __attribute__((visibility("default")))
-#   else
-#      define CMPI_EXPORT /* empty */
-#   endif
-
-/* Define CMPI_EXTERN_C */
-#   ifdef __cplusplus
-#      define CMPI_EXTERN_C extern "C" CMPI_EXPORT
-#   else
-#      define CMPI_EXTERN_C CMPI_EXPORT
+#   if !defined(CMPI_PLATFORM_LINUX_GENERIC_GNU) && !defined(CMPI_PLATFORM_HPUX_ACC) && \
+    !defined(CMPI_PLATFORM_WIN32_IX86_MSVC) && !defined(CMPI_PLATFORM_SOLARIS_SPARC_GNU) && \
+    !defined(CMPI_PLATFORM_SOLARIS_SPARC_CC) && !defined(CMPI_PLATFORM_AIX_RS_IBMCXX) && \
+    !defined(CMPI_PLATFORM_ZOS_ZSERIES_IBM) && !defined(CMPI_PLATFORM_TRU64_ALPHA_DECCXX) && \
+    !defined(CMPI_PLATFORM_OS400_ISERIES_IBM) && !defined(CMPI_PLATFORM_DARWIN_PPC_GNU) && \
+	!defined(CMPI_PLATFORM_VMS_ALPHA_DECCXX) && !defined(CMPI_PLATFORM_VMS_IA64_DECCXX)
+#      error "You have not defined the right platform. The choices are:"
+#      error "CMPI_PLATFORM_LINUX_GENERIC_GNU, CMPI_PLATFORM_HPUX_ACC,"
+#      error "CMPI_PLATFORM_WIN32_IX86_MSVC, CMPI_PLATFORM_SOLARIS_SPARC_GNU,"
+#      error "CMPI_PLATFORM_SOLARIS_SPARC_CC, CMPI_PLATFORM_AIX_RS_IBMCXX,"
+#      error "CMPI_PLATFORM_ZOS_ZSERIES_IBM, CMPI_PLATFORM_TRU64_ALPHA_DECCXX,"
+#      error "CMPI_PLATFORM_OS400_ISERIES_IBM, CMPI_PLATFORM_DARWIN_PPC_GNU,"
+#	   error "CMPI_PLATFORM_VMS_ALPHA_DECCXX, CMPI_PLATFORM_VMS_IA64_DECCXX"
 #   endif
 
 #endif
