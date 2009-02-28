@@ -22,7 +22,7 @@ nobase_include_HEADERS=cmpi/CmpiArgs.h cmpi/CmpiBroker.h cmpi/cmpidt.h \
 	cmpi/CmpiBaseMI.h cmpi/CmpiData.h cmpi/CmpiIndicationMI.h \
 	cmpi/CmpiObject.h cmpi/CmpiResult.h cmpi/CmpiBooleanData.h \
 	cmpi/CmpiDateTime.h cmpi/CmpiInstance.h cmpi/CmpiObjectPath.h \
-	cmpi/CmpiSelectExp.h
+	cmpi/CmpiSelectExp.h cmpi/cmpipl.h
 
 libcmpiCppImpl_la_SOURCES=CmpiImpl.cpp
 
