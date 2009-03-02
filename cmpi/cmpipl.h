@@ -2,7 +2,7 @@
  *
  * $Id$
  *
- * (C) Copyright IBM Corp. 2006, 2008
+ * (C) Copyright IBM Corp. 2009
  *
  * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
  * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
@@ -11,7 +11,7 @@
  * You can obtain a current copy of the Eclipse Public License from
  * http://www.opensource.org/licenses/eclipse-1.0.txt
  *
- * Author:        
+ * Author:        Tyrel Datwyler  <tyreld@us.ibm.com>        
  * Contributors:  
  *
  * Description: CMPI Platform Definitions
@@ -43,23 +43,54 @@
 /* ------------------------------------------------------------------------- */
 
 #ifndef _CMPIPL_H_
-#   define _CMPIPL_H_
+#  define _CMPIPL_H_
 
-// There are the following list of platforms
+#ifdef SBLIM_PLATFORM_LINUX_GENERIC_GNU
+#  define  CMPI_PLATFORM_LINUX_GENERIC_GNU
+#endif
 
-#   if !defined(CMPI_PLATFORM_LINUX_GENERIC_GNU) && !defined(CMPI_PLATFORM_HPUX_ACC) && \
-    !defined(CMPI_PLATFORM_WIN32_IX86_MSVC) && !defined(CMPI_PLATFORM_SOLARIS_SPARC_GNU) && \
-    !defined(CMPI_PLATFORM_SOLARIS_SPARC_CC) && !defined(CMPI_PLATFORM_AIX_RS_IBMCXX) && \
-    !defined(CMPI_PLATFORM_ZOS_ZSERIES_IBM) && !defined(CMPI_PLATFORM_TRU64_ALPHA_DECCXX) && \
-    !defined(CMPI_PLATFORM_OS400_ISERIES_IBM) && !defined(CMPI_PLATFORM_DARWIN_PPC_GNU) && \
-	!defined(CMPI_PLATFORM_VMS_ALPHA_DECCXX) && !defined(CMPI_PLATFORM_VMS_IA64_DECCXX)
-#      error "You have not defined the right platform. The choices are:"
-#      error "CMPI_PLATFORM_LINUX_GENERIC_GNU, CMPI_PLATFORM_HPUX_ACC,"
-#      error "CMPI_PLATFORM_WIN32_IX86_MSVC, CMPI_PLATFORM_SOLARIS_SPARC_GNU,"
-#      error "CMPI_PLATFORM_SOLARIS_SPARC_CC, CMPI_PLATFORM_AIX_RS_IBMCXX,"
-#      error "CMPI_PLATFORM_ZOS_ZSERIES_IBM, CMPI_PLATFORM_TRU64_ALPHA_DECCXX,"
-#      error "CMPI_PLATFORM_OS400_ISERIES_IBM, CMPI_PLATFORM_DARWIN_PPC_GNU,"
-#	   error "CMPI_PLATFORM_VMS_ALPHA_DECCXX, CMPI_PLATFORM_VMS_IA64_DECCXX"
-#   endif
+#ifdef SBLIM_PLATFORM_HPUX_ACC
+#  define CMPI_PLATFORM_HPUX_ACC
+#endif
+
+#ifdef SBLIM_PLATFORM_WIN32_IX86_MSVC
+#  define CMPI_PLATFORM_WIN32_I86_MSVC
+#endif
+
+#ifdef SBLIM_PLATFORM_SOLARIS_SPARC_GNU
+#  define CMPI_PLATFORM_SOLARIS_SPARC_GNU
+#endif
+
+#ifdef SBLIM_PLATFORM_SOLARIS_SPARC_CC
+#  define CMPI_PLATFORM_SOLARIS_SPARC_CC
+#endif
+
+#ifdef SBLIM_PLATFORM_AIX_RS_IBMCXX
+#  define CMPI_PLATFORM_AIX_RS_IBMCXX
+#endif
+
+#ifdef SBLIM_PLATFORM_ZOS_ZSERIES_IBM
+#  define CMPI_PLATFOMR_ZOS_ZSERIES_IBM
+#endif
+
+#ifdef SBLIM_PLATFORM_TRU64_ALPHA_DECCXX
+#  define CMPI_PLATFORM_TRU64_ALPHA_DECCXX
+#endif
+
+#ifdef SBLIM_PLATFORM_OS400_ISERIES_IBM
+#  define CMPI_PLATFORM_OS400_ISERIES_IBM
+#endif
+
+#ifdef SLBIM_PLATFORM_DARWIN_PPC_GNU
+#  define CMPI_PLATFORM_DARWIN_PPC_GNU
+#endif
+
+#ifdef SBLIM_PLATFORM_VMS_ALPHA_DECCXX
+#  define CMPI_PLATFORM_VMS_ALPHA_DECCXX
+#endif
+
+#ifdef SBLIM_PLATFORM_VMS_IA64_DECCXX
+#  define CMPI_PLATFORM_VMS_IA64_DECCXX
+#endif
 
 #endif
