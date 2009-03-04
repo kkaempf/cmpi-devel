@@ -54,11 +54,12 @@ extern "C"
 
 // defintion of version numbers to be used by providers using CMBrokerVersion()
 // They indicate what CMPI version is supported by both the broker and its adapter
-
-#   define CMPIVersion100 100
-  //  1.00
-#   define CMPIVersion200 200
-  //  2.00
+#   define CMPIVersion085 85
+#   define CMPIVersion086 86
+#   define CMPIVersion087 87
+#   define CMPIVserion090 90
+#   define CMPIVersion100 100 //  1.00
+#   define CMPIVersion200 200 //  2.00
 
 // CMPI_VERSION compile switch should be used during MI compilation only.
 // It is used define minimal version support needed from Management Broker.
@@ -69,10 +70,14 @@ extern "C"
 #         define CMPI_VER_200 1
 #      elif (CMPI_VERSION==100)
 #         define CMPI_VER_100 1
-// Please note that if the CMPI implementations supports "historical" CMPI
-// levels (90, 86, etc) this would be the place to add the checks for the
-// version.
-//
+#      elif (CMPI_VERSION==90)
+#         define CMPI_VER_90 1
+#      elif (CMPI_VERSION==87)
+#         define CMPI_VER_87 1
+#      elif (CMPI_VERSION==86)
+#        define CMPI_VER_86 1
+#      elif (CMPI_VERSION==85)
+#        define CMPI_VER_85 1
 #      else
 #         error Unsupported CMPI_VERSION defined
 #      endif
@@ -94,17 +99,38 @@ extern "C"
 // If this is not the case, the MI might require higher version MB support.
 #   if defined (CMPI_VER_200) || defined(CMPI_VER_ALL)
 #      define CMPI_VER_100
+#      define CMPI_VER_90
+#      define CMPI_VER_87
+#      define CMPI_VER_86
+#      define CMPI_VER_85
 #      define CMPICurrentVersion CMPIVersion200
-#   elif   defined (CMPI_VER_100) || defined(CMPI_VER_ALL)
+#   elif   defined (CMPI_VER_100)
+#      define CMPI_VER_90
+#      define CMPI_VER_87
+#      define CMPI_VER_86
+#      define CMPI_VER_85
 #      define CMPICurrentVersion CMPIVersion100
-
-// Please note that if the CMPI implementations supports "historical" CMPI
-// levels (90, 86, etc) this would be the place to add the checks for the
-// version.
-
+#   elif   defined (CMPI_VER_90)
+#      define CMPI_VER_87
+#      define CMPI_VER_86
+#      define CMPI_VER_85
+#      define CMPICurrentVersion CMPIVersion090
+#   elif   defined (CMPI_VER_87)
+#      define CMPI_VER_86
+#      define CMPI_VER_85
+#      define CMPICurrentVersion CMPIVersion087
+#   elif   defined (CMPI_VER_86)
+#      define CMPI_VER_85
+#      define CMPICurrentVersion CMPIVersion086
+#   elif   defined (CMPI_VER_85)
+#      define CMPICurrentVersion CMPIVersion085
 #   else                        // default version
 #      define CMPI_VER_200
 #      define CMPI_VER_100
+#      define CMPI_VER_90
+#      define CMPI_VER_87
+#      define CMPI_VER_86
+#      define CMPI_VER_85
 #      define CMPICurrentVersion CMPIVersion200
 #   endif
 
