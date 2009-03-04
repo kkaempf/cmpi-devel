@@ -1,3 +1,10 @@
+Changes in 2.0.1
+=================
+
+Bugs fixed:
+- 2662011 Fixed cmpi-devel references unknown setInstance
+- 2662075 Fixed CBGetClassification references non-existing brokerClassification
+
 Changes in 2.0.0
 ==================
 

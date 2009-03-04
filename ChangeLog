@@ -1,3 +1,14 @@
+2009-03-04 Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * cmpi/cmpidt.h:
+   Fixed 2662011: cmpi-devel references unknown setInstance
+
+2009-03-04 Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * cmpi/cmpimacs.h:
+   Fixed 2662075: CBGetClassification references non-existing 
+   brokerClassification
+
 2009-02-27 Tyrel Datwyler <tyreld@us.ibm.com>
 
    * CmpiImpl.cpp, Makefile.am, configure.ac, cmpi/cmpift.h, cmpi/cmpidt.h,
