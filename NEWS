@@ -4,12 +4,13 @@ Changes in 2.0.1
 Bugs fixed:
 - 2662011 Fixed cmpi-devel references unknown setInstance
 - 2662075 Fixed CBGetClassification references non-existing brokerClassification
+- 2688794 Fixed typo in cmpidt.h
 
 Changes in 2.0.0
 ==================
 
 New Features:
-1702153 enablement for CMPI 2.0 standard
+- 1702153 enablement for CMPI 2.0 standard
 
 Changes in 1.0.6
 ==================

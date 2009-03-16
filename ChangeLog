@@ -1,3 +1,8 @@
+2009-03-16  Tyrel Dawtyler <tyreld@us.ibm.com>
+
+   * cmpi/cmpidt.h:
+   Fixed 2688794: typo in cmpidt.h
+
 2009-03-04 Tyrel Datwyler <tyreld@us.ibm.com>
 
    * cmpi/cmpidt.h:

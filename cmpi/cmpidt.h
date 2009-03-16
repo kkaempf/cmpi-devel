@@ -57,7 +57,7 @@ extern "C"
 #   define CMPIVersion085 85
 #   define CMPIVersion086 86
 #   define CMPIVersion087 87
-#   define CMPIVserion090 90
+#   define CMPIVersion090 90
 #   define CMPIVersion100 100 //  1.00
 #   define CMPIVersion200 200 //  2.00
 
