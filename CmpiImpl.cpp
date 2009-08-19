@@ -894,8 +894,8 @@ CmpiData::CmpiData(CMPIReal64 d) {
 
 CmpiData::CmpiData(const CmpiString& d) {
    _data.state=CMPI_goodValue;
-   _data.value.chars=(char*)d.charPtr();
-   _data.type=CMPI_chars;
+   _data.value.string=d.getEnc();
+   _data.type=CMPI_string;
 }
 
 CmpiData::CmpiData(const char* d) {

@@ -1,3 +1,6 @@
+Bugs Fixed:
+- 2817255 CmpiData constructor for CmpiString argument produce garbage
+
 Changes in 2.0.1
 =================
 
